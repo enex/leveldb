@@ -13,7 +13,7 @@
 //!
 //! let tempdir = TempDir::new("demo").unwrap();
 //! let path = tempdir.path();
-//! 
+//!
 //! let mut options = Options::new();
 //! options.create_if_missing = true;
 //! let mut database = match Database::open(path, options) {
@@ -38,7 +38,7 @@
 //!   Err(e) => { panic!("failed reading data: {:?}", e) }
 //! }
 //! ```
- 
+
 #![crate_type = "lib"]
 #![crate_name = "leveldb"]
 #![deny(warnings)]
@@ -56,8 +56,6 @@ pub use database::kv as kv;
 pub use database::batch as batch;
 pub use database::management as management;
 
-use std::marker::PhantomFn;
-
 #[allow(missing_docs)]
 pub mod cbits;
 pub mod database;
@@ -66,7 +64,7 @@ pub mod database;
 ///
 /// Need a recent version of leveldb to be used.
 
-pub trait Version : PhantomFn<Self, ()> {
+pub trait Version {
     /// The major version.
     fn major() -> isize {
         unsafe { leveldb_major_version() as isize }
